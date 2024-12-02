@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body id="display"></body>
+  <script>
+    const get = async () => {
+      try {
+        const response = await fetch("http://localhost:8081/get");
+        const data = await response.json();
+        console.log(data);
+
+        const table = document.createElement("table");
+        const headerRow = document.createElement("tr");
+
+        const headers = [
+          "S.No",
+          "Bill Id",
+          "Bill Date",
+          "Station",
+          "USer",
+          "Category",
+          "Sub Category",
+          "Origin",
+          "Manufacturer",
+          "HSN Code",
+          "Store",
+          "Name",
+        ];
+
+        headers.forEach((headerText) => {
+          const th = document.createElement("th");
+          th.append(document.createTextNode(headerText));
+          headerRow.append(th);
+        });
+
+        table.append(headerRow);
+
+        data.map((item) => {
+          const row = document.createElement("tr");
+
+          const cells = [
+            item.id,
+            item.billParent.billId,
+            item.billParent.billDate,
+            item.billParent.station,
+            item.billParent.user,
+            item.category,
+            item.subCategory,
+            item.origin,
+            item.manufacturer,
+            item.hsnCode,
+            item.store,
+            item.name,
+          ];
+
+          cells.map((cellData) => {
+            const td = document.createElement("td");
+            td.append(document.createTextNode(cellData));
+            row.append(td);
+          });
+
+          table.append(row);
+        });
+
+        // Append the table to the display element
+        const display = document.getElementById("display"); // Ensure this matches your HTML
+        display.innerHTML = ""; // Clear previous content
+        display.append(table);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    // Call the function to fetch and display the data
+    get();
+  </script>
+</html>

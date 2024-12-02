@@ -1,0 +1,66 @@
+Shopping mall:
+
+service 1:    Employees
+
+table 1: Employee
+        empId
+	empName
+	empPhNo
+
+table 2: Salary
+        year
+	empSalary
+	empId (OneToOne)
+		 
+table 3: Role
+	id
+        designationName:owner,admin,sales supervisior,floor supervisior,accountant,employee
+		 
+table 4: RoleMapping
+	id
+        roleId (OneToOne),
+	empId (OneToMany)
+
+table 5: ManagerForEmployees
+	id
+        roleMappingId (OneToOne)
+	empId (OneToMany)
+		 
+service : 2   stock
+
+table 1: Stock
+         cateogry
+		 dressName
+		 quantity
+		 price
+		 
+		 
+service : 3     sales
+
+table 1: sales
+         date
+	 sale
+	 saleAmount
+	 empID
+		 
+table 2: Incentives
+         monthYear
+	 saleAmount
+	 empIncentive
+		 
+
+# id	joining_date	name		phone_number
+1	2018-11-13	Sanketh Shinde	9100200508
+2	2018-11-13	Adil		9856124500
+3	2018-11-13	Channanagouda	9856128899
+4	2018-11-13	Akash		9856128880
+101	2018-11-13	Tejas		8945754875
+111	2018-11-13	Akhil		9856231573
+112	2018-11-13	Utam		9856231986
+201	2018-11-13	Mayur		8945754865
+211	2018-11-13	Rakesh		9856231999
+212	2018-11-13	Junaid		9632145878
+301	2018-11-13	Vinay		9542365125
+311	2018-11-13	Narender	9632149564
+312	2018-11-13	Kishor		9632149980
+313	2018-11-13	Manohar		9632149989
